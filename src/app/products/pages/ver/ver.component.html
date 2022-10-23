@@ -1,0 +1,27 @@
+<h2>Lista de productos</h2>
+<hr>
+<div class="row container m-2">
+  <div>
+    <div class="text-center"
+        *ngIf="cargando">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+  <p class="text-center"
+    *ngIf="products.length === 0">
+    No se han agregado productos
+  </p>
+    <div class="card col-2 m-2"
+        style="width: 18rem;"
+        *ngFor="let product of products; let i=index">
+        <div class="card-body">
+          <p class="card-title"><span class="fw-bold">Nombre:</span> {{ product.name }}</p>
+          <p class="card-subtitle mb-2 text-muted"><span class="fw-bold">Precio:</span> {{ product.price }}</p>
+          <p class="card-text"><span class="fw-bold">Descripcion:</span> {{ product.description }}</p>
+          <button [routerLink]="['/products/editar', product._id]" class="btn btn-outline-warning me-2">Editar</button>
+          <button (click)="borrar(i)" class="btn btn-outline-danger">Eliminar</button>
+        </div>
+    </div>
+</div>
